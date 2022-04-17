@@ -35,6 +35,8 @@ void MR60BHA1::loop()
 
         if (_debug)
         {
+            _debug->print(_index);
+            _debug->print("\t");
             _debug->println(ch, HEX);
         }
 
@@ -80,17 +82,18 @@ void MR60BHA1::loop()
                 break;
 
             case 4:
-                _dataLen = ch;
+                _dataLen = (ch << 8);
                 break;
 
             case 5:
-                _dataLen |= (ch << 8);
+                _dataLen |= ch;
                 // Unsupported sensor, different frame length, transmission error e.t.c.
                 if (_dataLen < 1 || _dataLen > sizeof(_payload))
                 {
                     if(_debug)
                     {
-                        _debug->println("Unsupported sensor");
+                        _debug->print("Unsupported sensor, dataLen=");
+                        _debug->println(_dataLen);
                     }
                     _index = 0;
                     return;
@@ -120,7 +123,7 @@ void MR60BHA1::loop()
                     if(_debug)
                     {
                         _debug->print("<< ");
-                        dump(_payload, _dataLen + 1);
+                        dump(_payload, _dataLen + sizeof(MR60BHA1_FRAME_HEADER) + 3);
                     }
 
                     if (ch != 0x43)
@@ -133,7 +136,8 @@ void MR60BHA1::loop()
                         return;
                     }
                     _status = STATUS_OK;
-                    break;
+                    _index = 0;
+                    return;
                 }
 
                 break;

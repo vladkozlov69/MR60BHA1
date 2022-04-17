@@ -13,22 +13,22 @@ void setup()
     // Serial1.begin(115200);
     Serial1.begin(115200, SERIAL_8N1, SERIAL1_RXPIN, SERIAL1_TXPIN);
     while(!Serial);
-    // sensor = new MR60BHA1(&Serial1, &Serial);
+    sensor = new MR60BHA1(&Serial1, &Serial);
 }
 
 void loop() 
 {
-    // if (sensor->read())
-    // {
-
-    // }
-    if (Serial1.available())
+    if (sensor->read())
     {
-        uint8_t v = Serial1.read();
-        Serial.print(v, HEX);
-        // Serial.print(" ");
-        // // Serial.print(255 - v, HEX);
-        Serial.println();
-        // Serial.write(v);
+
     }
+    // if (Serial1.available())
+    // {
+    //     uint8_t v = Serial1.read();
+    //     Serial.print(v, HEX);
+    //     // Serial.print(" ");
+    //     // // Serial.print(255 - v, HEX);
+    //     Serial.println();
+    //     // Serial.write(v);
+    // }
 }
