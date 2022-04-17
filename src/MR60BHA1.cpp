@@ -33,6 +33,11 @@ void MR60BHA1::loop()
     {
         uint8_t ch = m_Stream->read();
 
+        if (_debug)
+        {
+            _debug->println(ch, HEX);
+        }
+
         if (_index < sizeof(_payload))
         {
              _payload[_index] = ch;
@@ -45,7 +50,7 @@ void MR60BHA1::loop()
                 {
                     if(_debug)
                     {
-                        _debug->println("Wrong packet header signature");
+                        _debug->println("Wrong packet header signature (0x53)");
                     }
                     _index = 0;
                     return;
@@ -58,7 +63,7 @@ void MR60BHA1::loop()
                 {
                     if(_debug)
                     {
-                        _debug->println("Wrong packet header signature");
+                        _debug->println("Wrong packet header signature (0x59)");
                     }
                     _index = 0;
                     return;
