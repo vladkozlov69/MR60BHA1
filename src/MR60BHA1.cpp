@@ -33,12 +33,12 @@ void MR60BHA1::loop()
     {
         uint8_t ch = m_Stream->read();
 
-        if (_debug)
-        {
-            _debug->print(_index);
-            _debug->print("\t");
-            _debug->println(ch, HEX);
-        }
+        // if (_debug)
+        // {
+        //     _debug->print(_index);
+        //     _debug->print("\t");
+        //     _debug->println(ch, HEX);
+        // }
 
         if (_index < sizeof(_payload))
         {

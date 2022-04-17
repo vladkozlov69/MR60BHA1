@@ -22,13 +22,4 @@ void loop()
     {
 
     }
-    // if (Serial1.available())
-    // {
-    //     uint8_t v = Serial1.read();
-    //     Serial.print(v, HEX);
-    //     // Serial.print(" ");
-    //     // // Serial.print(255 - v, HEX);
-    //     Serial.println();
-    //     // Serial.write(v);
-    // }
 }
