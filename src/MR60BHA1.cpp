@@ -120,11 +120,11 @@ void MR60BHA1::loop()
                 }
                 else if (_index == sizeof(MR60BHA1_FRAME_HEADER) + _dataLen + 2) // 0x43
                 {
-                    if(_debug)
-                    {
-                        _debug->print("<< ");
-                        dump(_payload, _dataLen + sizeof(MR60BHA1_FRAME_HEADER) + 3);
-                    }
+                    // if(_debug)
+                    // {
+                    //     _debug->print("<< ");
+                    //     dump(_payload, _dataLen + sizeof(MR60BHA1_FRAME_HEADER) + 3);
+                    // }
 
                     if (ch != 0x43)
                     {

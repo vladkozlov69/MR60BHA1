@@ -51,6 +51,8 @@ public:
     bool readUntil(uint16_t timeout = SINGLE_RESPONSE_TIME);
     MR60BHA1_PAYLOAD * getPayload();
     uint16_t getFrameLength() { return _dataLen; }
+    uint8_t getByteData(int position = 0) { return _payload[sizeof(MR60BHA1_FRAME_HEADER) + position]; }
+    uint16_t getWordData() { return getByteData(0) << 8 | getByteData(1); }
 };
 
 
